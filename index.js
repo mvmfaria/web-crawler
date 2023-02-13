@@ -18,10 +18,13 @@ async function crawl() {
   const page = await browser.newPage();
   await page.setUserAgent(DEFAULT_USER_AGENT);
   await page.goto('https://www.atlantbh.com/blog/');
+  console.log('Fetching links...');
   const urls = await fetchUrls(page);
+  console.log("Done.")
 
   /*Cheking if the link it's allowed to be crowded.*/
-
+  
+  console.log("Fetching images: ")
   for (let url of tqdm(urls)) {
     if (await checkIfAllowed(url)) {
         const somePage = await browser.newPage();
